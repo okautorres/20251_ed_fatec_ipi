@@ -7,7 +7,7 @@ int main() {
 
     for(int i = 1; i<N; i++){
         x = x*(i+1);
-    }
+    }   
 
     printf("%d\n",x);
  
