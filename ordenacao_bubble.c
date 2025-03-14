@@ -28,6 +28,14 @@ void bubble_sort(int v[], int n){
     }
 }
 
+int busca_simples(int x, int v[], int n){
+    for(int i=0; i< n; i++){
+        if(v[i] == x)
+        return 1;
+    return 0;
+    }
+}
+
 int main (){
     int *v; 
     int n;
