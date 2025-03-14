@@ -9,11 +9,12 @@ void exibe_vetor(int[], int, char *);
 void bubble_sort(int[], int);
 int busca_simples(int, int[], int);
 int busca_e_conta(int, int[], int);
+int busca_binaria(int, int[], int);
 //retorna o número de vezes que x aparece no vetor
 
 int main () {
     int *v;
-    int n;
+    int n,x;
     srand(time(0));
     printf ("escolha o tamanho do vetor, 0 encerra: ");
     scanf ("%d", &n);
@@ -45,10 +46,25 @@ int main () {
         // long int fim = time(0);
         //exibe_vetor(v, n, "vetor ordenado");
         //printf ("\ntempo de ordenacao: %ld\n", fim-ini);
-        preenche_sem_repetir(v,n);
+        preenche_vetor(v, n);
+        bubble_sort(v,n);
+        exibe_vetor(v, n, "vetor ordenado");
+
+        printf("digite o valor da busca: \n");
+        scanf("%d",&x);
+        int pos = busca_binaria(x,v,n);
+
+        if(pos == -1){
+            printf("nao ha\n");
+        } else{
+            printf("encontrou %d, na posicao %d \n", x, pos);
+        }
+
         free(v);
         printf ("\nescolha o novo tamanho, 0 encerra: ");
         scanf ("%d", &n);
+
+
     }
 
     // while (1) {
@@ -102,4 +118,22 @@ void preenche_sem_repetir(int v[], int n) {
         v[i] = r;
         printf("%d ", v[i]);
     }
+}
+
+int busca_binaria(int x, int v[], int n){
+    int inicio=0, fim = n-1;
+
+    while(inicio <= fim){
+        int meio = (inicio +fim)/2;
+        if(x==v[meio]){
+            return meio;
+        }
+        if(x > v[meio]){
+            inicio = meio+1;
+        } else {
+            fim = meio-1;
+        }
+    } 
+        return -1;
+
 }
